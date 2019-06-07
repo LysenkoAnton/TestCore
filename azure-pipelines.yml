@@ -15,3 +15,13 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Бесплатная пробная версия(7a663fb9-4d76-4259-9e13-cb3ba70a67c1)'
+    appType: 'webApp'
+    appName: 'TestFirstOnly'
+    deployToSlotOrASE: true
+    resourceGroupName: 'TestFirstOnly-rg'
+    slotName: 'testtest'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
